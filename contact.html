@@ -6,67 +6,112 @@
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <meta name="description" content="Mobile Application HTML5 Template">
+  <meta name="description" content="Better Authenticator App Site">
 
   <meta name="copyright" content="MACode ID, https://www.macodeid.com/">
 
-  <title>Mobster - One page app template</title>
+  <title>Contact Form</title>
 
-  <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/better_favicon_blue.png" type="image/x-icon">
 
-  <link rel="stylesheet" href="../assets/css/maicons.css">
+  <link rel="stylesheet" href="assets/css/maicons.css">
 
-  <link rel="stylesheet" href="../assets/vendor/animate/animate.css">
+  <link rel="stylesheet" href="assets/vendor/animate/animate.css">
 
-  <link rel="stylesheet" href="../assets/vendor/owl-carousel/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/vendor/owl-carousel/css/owl.carousel.min.css">
 
-  <link rel="stylesheet" href="../assets/css/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.css">
 
-  <link rel="stylesheet" href="../assets/css/mobster.css">
+  <link rel="stylesheet" href="assets/css/mobster.css">
+
+  <style>
+	/*This makes anchor links scroll intead of jump*/
+  	html { scroll-behavior: smooth; }
+  </style>
+  <!--Email script setup from here https://www.emailjs.com/docs/tutorial/creating-contact-form/-->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/integration
+            emailjs.init('user_LX3huK5xLZjQBVbEaTBho');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+				if (/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById("email").value) == false) {
+					console.log("Invalid email!");
+					document.getElementById("sendmessagediv").style.display = "block";
+					document.getElementById("sendmessage").textContent = "Error: Please enter a valid email address."
+				}
+				else if (document.getElementById("name").value != "" && document.getElementById("email").value != "" && document.getElementById("message").value != "") {
+					emailjs.sendForm('service_wisnval', 'template_ckk6iyn', this)
+	                    .then(function() {
+	                        console.log('SUCCESS!');
+							document.getElementById("name").value = ""
+							document.getElementById("email").value = ""
+							document.getElementById("message").value = ""
+							document.getElementById("sendmessagediv").style.display = "block";
+							document.getElementById("sendmessagediv").style.backgroundColor = "#4BB543";
+
+							document.getElementById("sendmessage").textContent = "Message sent."
+	                    }, function(error) {
+	                        console.log('FAILED...', error);
+	                    });
+				} else {
+					console.log("Fill all the forms please!");
+					document.getElementById("sendmessagediv").style.display = "block";
+					document.getElementById("sendmessage").textContent = "Error: Please fill all boxes."
+				}
+
+            });
+        }
+    </script>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-floating">
   <div class="container">
-    <a class="navbar-brand" href="index.html">
-      <img src="../assets/favicon-light.png" alt="" width="40">
-    </a>
+	<a class="navbar-brand" href="#">
+		<img src="assets/Better_Icon_Long.png" alt="" height="40">
+	</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
-    <div class="collapse navbar-collapse" id="navbarToggler">
-      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="index.html">Homepage 1</a>
-            <a class="dropdown-item" href="index-2.html">Homepage 2</a>
-          </div>
+
+	<div class="collapse navbar-collapse" id="navbarToggler">
+      <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
+		<li class="nav-item">
+			<a style="color: white !important;" class="nav-link" href="index.html">Home</a>
+		</li>
+		<li class="nav-item">
+          <a style="color: white !important;" class="nav-link" href="/#how_it_works">How it works</a>
+        </li>
+		<li class="nav-item">
+          <a style="color: white !important;" class="nav-link" href="/#faq">FAQ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="about.html">About</a>
+          <a style="color: white !important;" class="nav-link" href="download.html">Download</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="blog.html">Blog</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="updates.html">What's New</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="contact.html">Contact</a>
+          <a style="color: white !important;" class="nav-link" href="contact.html">Contact</a>
         </li>
       </ul>
       <div class="ml-auto my-2 my-lg-0">
-        <button class="btn btn-primary rounded-pill">Download Now</button>
+        <a href="download.html"><button class="btn btn-primary rounded-pill">Download Now</button></a>
       </div>
     </div>
   </div>
 </nav>
 
+
 <div class="bg-light">
 
-  <div class="page-hero-section bg-image hero-mini" style="background-image: url(../assets/img/hero_mini.svg);">
+  <div class="page-hero-section bg-image hero-mini" style="background-image: url(../assets/img/hero_mini_blue.png);">
     <div class="hero-caption">
       <div class="container fg-white h-100">
         <div class="row justify-content-center align-items-center text-center h-100">
@@ -74,7 +119,7 @@
             <h3 class="mb-4 fw-medium">Contact</h3>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-dark justify-content-center bg-transparent">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a style="color: #525060;" href="index.html">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Contact</li>
               </ol>
             </nav>
@@ -87,66 +132,30 @@
   <div class="page-section">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-10 my-3 wow fadeInUp">
-          <div class="card-page">
-            <div class="row row-beam-md">
-              <div class="col-md-4 text-center py-3 py-md-2">
-                <i class="mai-location-outline h3"></i>
-                <p class="fg-primary fw-medium fs-vlarge">Location</p>
-                <p class="mb-0">3 East Ridgewood Avenue Los Angeles, CA 90022</p>
-              </div>
-              <div class="col-md-4 text-center py-3 py-md-2">
-                <i class="mai-call-outline h3"></i>
-                <p class="fg-primary fw-medium fs-vlarge">Contact</p>
-                <p class="mb-1">+213 908 92034</p>
-                <p class="mb-0">+415 123 89245</p>
-              </div>
-              <div class="col-md-4 text-center py-3 py-md-2">
-                <i class="mai-mail-open-outline h3"></i>
-                <p class="fg-primary fw-medium fs-vlarge">Email</p>
-                <p class="mb-1">support@mobster.com</p>
-                <p class="mb-0">support@macodeid.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="col-md-6 col-lg-5 my-3 wow fadeInUp">
           <div class="card-page">
             <h3 class="fw-normal">Get in touch</h3>
-            <form method="POST" class="mt-3">
+            <form id="contact-form" class="mt-3">
+			  <input type="hidden" name="contact_number">
               <div class="form-group">
-                <label for="name" class="fw-medium fg-grey">Fullname</label>
-                <input type="text" class="form-control" id="name">
+                <label for="name" class="fw-medium fg-grey">Name</label>
+                <input type="text" class="form-control" id="name" name="user_name">
               </div>
-    
+
               <div class="form-group">
                 <label for="email" class="fw-medium fg-grey">Email</label>
-                <input type="text" class="form-control" id="email">
+                <input type="text" class="form-control" id="email" name="user_email">
               </div>
 
-              <div class="form-group">
-                <label for="phone" class="fw-medium fg-grey">Phone(optional)</label>
-                <input type="number" class="form-control" id="phone">
-              </div>
-    
               <div class="form-group">
                 <label for="message" class="fw-medium fg-grey">Message</label>
-                <textarea rows="6" class="form-control" id="message"></textarea>
+                <textarea rows="6" class="form-control" id="message" name="message"></textarea>
               </div>
-
-              <p>*Your information will never be shared with any third party.</p>
-    
-              <div class="form-group mt-4">
+			  <div id="sendmessagediv" style="width: 100%; background-color: #F13057; border-radius: 4px; display: none;"><p id="sendmessage" style="padding-left: 5%; padding-top: 5px; color: black; font-size: 13px;">Error:</p></div>
+              <div class="form-group mt-4" style="margin-top: 0;">
                 <button type="submit" class="btn btn-primary">Send Message</button>
               </div>
             </form>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-7 my-3 wow fadeInUp">
-          <div class="card-page">
-            <div class="maps-container">
-              <div id="myMap"></div>
-            </div>
           </div>
         </div>
       </div>
@@ -157,77 +166,31 @@
 
 
 <div class="page-footer-section bg-dark fg-white">
-  <div class="container">
-    <div class="row mb-5 py-3">
-      <div class="col-sm-6 col-lg-2 py-3">
-        <h5 class="mb-3">Pages</h5>
-        <ul class="menu-link">
-          <li><a href="#" class="">Features</a></li>
-          <li><a href="#" class="">Customers</a></li>
-          <li><a href="#" class="">Pricing</a></li>
-          <li><a href="#" class="">GDPR</a></li>
-        </ul>
-      </div>
-      <div class="col-sm-6 col-lg-2 py-3">
-        <h5 class="mb-3">Company</h5>
-        <ul class="menu-link">
-          <li><a href="#" class="">About</a></li>
-          <li><a href="#" class="">Team</a></li>
-          <li><a href="#" class="">Leadership</a></li>
-          <li><a href="#" class="">Careers</a></li>
-          <li><a href="#" class="">HIRING!</a></li>
-        </ul>
-      </div>
-      <div class="col-md-6 col-lg-4 py-3">
-        <h5 class="mb-3">Contact</h5>
-        <ul class="menu-link">
-          <li><a href="#" class="">Contact Us</a></li>
-          <li><a href="#" class="">Office Location</a></li>
-          <li><a href="#" class="">hello@mobster.com</a></li>
-          <li><a href="#" class="">support@macodeid.com</a></li>
-          <li><a href="#" class="">+808 11233 900</a></li>
-        </ul>
-      </div>
-      <div class="col-md-6 col-lg-4 py-3">
-        <h5 class="mb-3">Subscribe</h5>
-        <p>Get some offers, news, or update features of application</p>
-        <form method="POST">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Your email..">
-            <div class="input-group-append">
-              <button type="submit" class="btn btn-primary"><span class="mai-send"></span></button>
-            </div>
-          </div>
-        </form>
+	<div class="container mb-5">
+		<div class="row justify-content-center text-center wow fadeInUp">
+			<div class="col-lg-8">
+				<div class="text-center mb-3">
+					<img src="assets/better_favicon_blue.png" alt="" height="80">
+				</div>
+				<h3 class="mb-3" style="font-family: CentraNo2_Bold">better authenticator</h3>
 
-        <!-- Social Media Button -->
-        <div class="mt-4">
-          <a href="#" class="btn btn-fab btn-primary fg-white"><span class="mai-logo-facebook"></span></a>
-          <a href="#" class="btn btn-fab btn-primary fg-white"><span class="mai-logo-twitter"></span></a>
-          <a href="#" class="btn btn-fab btn-primary fg-white"><span class="mai-logo-instagram"></span></a>
-          <a href="#" class="btn btn-fab btn-primary fg-white"><span class="mai-logo-google"></span></a>
-        </div>
-      </div>
-    </div>
-  </div>
+				<ul class="nav justify-content-center py-3">
+					<li class="nav-item"><a href="index.html" class="nav-link fg-white px-4">Home</a></li>
+					<li class="nav-item"><a href="#how_it_works" class="nav-link fg-white px-4">How it works</a></li>
+					<li class="nav-item"><a href="#faq" class="nav-link fg-white px-4">FAQ</a></li>
+					<li class="nav-item"><a href="download.html" class="nav-link fg-white px-4">Download</a></li>
+					<li class="nav-item"><a href="contact.html" class="nav-link fg-white px-4">Contact</a></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
 
   <hr>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-6 py-2">
-        <img src="../assets/favicon-light.png" alt="" width="40">
-        <!-- Please don't remove or modify the credits below -->
-        <p class="d-inline-block ml-2">Copyright &copy; <a href="https://www.macodeid.com/" class="fg-white fw-medium">MACode ID</a>. All rights reserved</p>
-      </div>
-      <div class="col-12 col-md-6 py-2">
-        <ul class="nav justify-content-end">
-          <li class="nav-item"><a href="#" class="nav-link">Terms of Use</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Privacy Policy</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Cookie Policy</a></li>
-        </ul>
-      </div>
-    </div>
+  <!-- Please don't remove or modify the credits below -->
+  <div style="margin-left: 50px; margin-top: 50px; line-height: 5px;">
+  	<p>Website Template:</p>
+  	<p class="mt-4 wow fadeIn">Copyright &copy; 2020 <a href="https://www.macodeid.com/" class="fg-white fw-medium">MACode ID</a>. All right reserved</p>
   </div>
 </div>
 
@@ -241,9 +204,6 @@
 
 <script src="../assets/js/mobster.js"></script>
 
-<script src="../assets/js/google-maps.js"></script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIA_zqjFMsJM_sxP9-6Pde5vVCTyJmUHM&callback=initMap"></script>
 
 </body>
 </html>
