@@ -10,7 +10,7 @@
 
   <meta name="copyright" content="MACode ID, https://www.macodeid.com/">
 
-  <title>Contact Form</title>
+  <title>Download</title>
 
   <link rel="shortcut icon" href="assets/better_favicon_blue.png" type="image/x-icon">
 
@@ -28,49 +28,7 @@
 	/*This makes anchor links scroll intead of jump*/
   	html { scroll-behavior: smooth; }
   </style>
-  <!--Email script setup from here https://www.emailjs.com/docs/tutorial/creating-contact-form/-->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            // https://dashboard.emailjs.com/admin/integration
-            emailjs.init('user_LX3huK5xLZjQBVbEaTBho');
-        })();
-    </script>
-    <script type="text/javascript">
-        window.onload = function() {
-            document.getElementById('contact-form').addEventListener('submit', function(event) {
-                event.preventDefault();
-                // generate a five digit number for the contact_number variable
-                this.contact_number.value = Math.random() * 100000 | 0;
-                // these IDs from the previous steps
-				if (/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(document.getElementById("email").value) == false) {
-					console.log("Invalid email!");
-					document.getElementById("sendmessagediv").style.display = "block";
-					document.getElementById("sendmessage").textContent = "Error: Please enter a valid email address."
-				}
-				else if (document.getElementById("name").value != "" && document.getElementById("email").value != "" && document.getElementById("message").value != "") {
-					emailjs.sendForm('service_wisnval', 'template_ckk6iyn', this)
-	                    .then(function() {
-	                        console.log('SUCCESS!');
-							document.getElementById("name").value = ""
-							document.getElementById("email").value = ""
-							document.getElementById("message").value = ""
-							document.getElementById("sendmessagediv").style.display = "block";
-							document.getElementById("sendmessagediv").style.backgroundColor = "#4BB543";
 
-							document.getElementById("sendmessage").textContent = "Message sent."
-	                    }, function(error) {
-	                        console.log('FAILED...', error);
-	                    });
-				} else {
-					console.log("Fill all the forms please!");
-					document.getElementById("sendmessagediv").style.display = "block";
-					document.getElementById("sendmessage").textContent = "Error: Please fill all boxes."
-				}
-
-            });
-        }
-    </script>
 </head>
 <body>
 
@@ -116,11 +74,11 @@
       <div class="container fg-white h-100">
         <div class="row justify-content-center align-items-center text-center h-100">
           <div class="col-lg-6">
-            <h3 class="mb-4 fw-medium">Contact</h3>
+            <h3 class="mb-4 fw-medium">Privacy Policy</h3>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-dark justify-content-center bg-transparent">
                 <li class="breadcrumb-item"><a style="color: #525060;" href="index.html">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                <li class="breadcrumb-item active" aria-current="page">Privacy Policy</li>
               </ol>
             </nav>
           </div>
@@ -128,40 +86,48 @@
       </div>
     </div>
   </div>
+  <div class="page-section no-scroll">
+    <div class="container" style="width: 60%; margin-left: 20%;">
+      <h2 class="text-center wow fadeIn">Better Authenticator App & Extension Privacy Policy</h2>
+      <div class="row mt-5" >
+		  <p>
+			  <b>Information We Collect:</b><br>
+<p style="margin-left: 5%;">
+	Public IP address:<br>
+	<n style="font-size: 12px;">We collect the public IP address of the device when you send any information between the Extension and the App and the time of the message being sent for the sake of analytics only. This information will not be shared with any third party.</n>
+	<br>No other personal information is collected.
+	<br><br>
+</p>
 
-  <div class="page-section">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5 my-3 wow fadeInUp">
-          <div class="card-page">
-            <h3 class="fw-normal">Get in touch</h3>
-            <form id="contact-form" class="mt-3">
-			  <input type="hidden" name="contact_number">
-              <div class="form-group">
-                <label for="name" class="fw-medium fg-grey">Name</label>
-                <input type="text" class="form-control" id="name" name="user_name">
-              </div>
 
-              <div class="form-group">
-                <label for="email" class="fw-medium fg-grey">Email</label>
-                <input type="text" class="form-control" id="email" name="user_email">
-              </div>
+<b>How Do We Collect Information:</b><br>
+	<p style="margin-left: 5%;">
 
-              <div class="form-group">
-                <label for="message" class="fw-medium fg-grey">Message</label>
-                <textarea rows="6" class="form-control" id="message" name="message"></textarea>
-              </div>
-			  <div id="sendmessagediv" style="width: 100%; background-color: #F13057; border-radius: 4px; display: none;"><p id="sendmessage" style="padding-left: 5%; padding-top: 5px; color: black; font-size: 13px;">Error:</p></div>
-              <div class="form-group mt-4" style="margin-top: 0;">
-                <button type="submit" class="btn btn-primary">Send Message</button>
-              </div>
-            </form>
-          </div>
-        </div>
+	<b>Information That You Give Us:</b><br>
+	See Mailing Policy.<br><br>
+
+<b>Information Collected Automatically:</b><br>
+	When you send any data between the Extension and the App by: Connecting, Requesting a Key or Sending a Key, it goes through our servers. All the data communicated between the Extension and App is encrypted with AES256. The IP address of the App/Extension is not part of the data and is therefore not encrypted. This (the IP) may be collected, along with the time of the message being sent for the sake of analytics only.
+	<br><br>
+</p>
+
+<p>
+<b>Mailing Policy.</b><br>
+When you send us an email, we will use your email address to reply if needed and we will store your communication and our reply for future correspondence. Beyond any reply to your message, we will never use your email to send any message, for information, marketing or otherwise, and we will never share your email with anyone.
+</p>
+
+<b>Privacy Policy update:</b><br>
+We may update this Privacy Policy as necessary to reflect any changes. Before updating or installing the extension or app always check that this Privacy Policy has not been updated.
+<br><br>
+The last update date of this Privacy Policy is shown below:<br>
+05/12/2020
+<br><br>
+
+If you have any questions feel free to use the contact form to get in touch with us.
+</p>
       </div>
     </div>
   </div>
-
 </div> <!-- .bg-light -->
 
 
