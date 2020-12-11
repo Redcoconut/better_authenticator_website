@@ -29,26 +29,45 @@
   	html { scroll-behavior: smooth; }
   </style>
   <script>
-	var currentId = 0;
+
 	function handleClick(myRadio) {
-	    //alert('Old value: ' + currentId);
-	    //alert('New value: ' + myRadio.id);
 		if (myRadio.id == "androidinp") {
 			document.getElementById("androidlab").classList.add("active")
 			document.getElementById("ioslab").classList.remove("active")
 			document.getElementById("iosdownload").style.display = "none"
 			document.getElementById("androiddownload").style.display = "block"
-		} else {
+		} else if (myRadio.id == "iosinp") {
 			document.getElementById("ioslab").classList.add("active")
 			document.getElementById("androidlab").classList.remove("active")
 			document.getElementById("iosdownload").style.display = "block"
 			document.getElementById("androiddownload").style.display = "none"
+		} else if (myRadio.id == "firefoxinp") {
+			document.getElementById("firefoxlab").classList.add("active")
+			document.getElementById("chromelab").classList.remove("active")
+			document.getElementById("edgelab").classList.remove("active")
 
+			document.getElementById("chromedownload").style.display = "none"
+			document.getElementById("firefoxdownload").style.display = "block"
+			document.getElementById("edgedownload").style.display = "none"
+		} else if (myRadio.id == "chromeinp") {
+			document.getElementById("chromelab").classList.add("active")
+			document.getElementById("firefoxlab").classList.remove("active")
+			document.getElementById("edgelab").classList.remove("active")
+
+			document.getElementById("chromedownload").style.display = "block"
+			document.getElementById("firefoxdownload").style.display = "none"
+			document.getElementById("edgedownload").style.display = "none"
+		} else if (myRadio.id == "edgeinp") {
+			document.getElementById("chromelab").classList.remove("active")
+			document.getElementById("firefoxlab").classList.remove("active")
+			document.getElementById("edgelab").classList.add("active")
+
+			document.getElementById("chromedownload").style.display = "none"
+			document.getElementById("firefoxdownload").style.display = "none"
+			document.getElementById("edgedownload").style.display = "block"
 		}
 
-
 		myRadio.checked = true;
-	    currentId = myRadio.id;
 	}
   </script>
 </head>
@@ -112,9 +131,22 @@
     <div class="container">
       <h2 class="text-center wow fadeIn">Download Browser Extension</h2>
       <div class="row justify-content-center mt-5">
+		  <div class="row justify-content-center text-center wow fadeInUp" style="height: 48px;">
+			  <div class="btn-group btn-group-toggle rounded-pill btn-switch">
+				<label class="btn active" id="firefoxlab" style="border-color: white;">
+				  <input type="radio" name="options" id="firefoxinp" onclick="handleClick(this);" checked> Firefox
+				</label>
+				<label class="btn" id="chromelab" style="border-color: white;">
+				  <input type="radio" name="options" id="chromeinp" onclick="handleClick(this);"> Chrome
+				</label>
+				<label class="btn" id="edgelab" style="border-color: white;">
+				  <input type="radio" name="options" id="edgeinp" onclick="handleClick(this);"> Edge
+				</label>
+			  </div>
+		  </div>
         <div class="col-lg-10">
           <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4 py-3 wow fadeInLeft">
+            <div class="col-md-6 col-lg-4 py-3 wow fadeInLeft" id="firefoxdownload">
               <div class="card card-body border-0 text-center shadow pt-5">
                 <div class="svg-icon mx-auto mb-4">
                   <img src="assets/img/icons/firefox_icon.png" style="width: 100px" alt="">
@@ -123,14 +155,24 @@
 				<a href="assets/downloads/better_authenticator_buddy-1.0-fx.xpi" class="btn btn-outline-primary rounded-pill">Add to firefox</a>
               </div>
             </div>
-            <div class="col-md-6 col-lg-4 py-3 wow fadeInRight">
+            <div class="col-md-6 col-lg-4 py-3 wow fadeInRight" id="chromedownload" style="display: none;">
               <div class="card card-body border-0 text-center shadow pt-5">
                 <div class="svg-icon mx-auto mb-4">
-                  <img src="assets/img/icons/chrome_edge_icon.png" style="width: 135px" alt="">
+                  <img src="assets/img/icons/chrome_icon.png" style="width: 100px" alt="">
                 </div>
-                <h5 class="fg-gray">Chrome/Edge</h5>
+                <h5 class="fg-gray">Chrome</h5>
                 <p class="fs-small">Give me like a few days and it'll be added</p>
-				<a href="assets/downloads/better_authenticator_buddy_chromium.crx" class="btn btn-outline-primary rounded-pill">Add to Chromium</a>
+				<a href="assets/downloads/better_authenticator_buddy_chromium.crx" class="btn btn-outline-primary rounded-pill">Add to Chrome</a>
+
+              </div>
+            </div>
+			<div class="col-md-6 col-lg-4 py-3 wow fadeInRight" id="edgedownload" style="display: none;">
+              <div class="card card-body border-0 text-center shadow pt-5">
+                <div class="svg-icon mx-auto mb-4">
+                  <img src="assets/img/icons/edge_icon.png" style="width: 100px" alt="">
+                </div>
+                <h5 class="fg-gray">Edge</h5>
+				<a target="about:blank" href="https://microsoftedge.microsoft.com/addons/detail/better-authenticator-budd/nghemepphkgppjemmblpnphldhfhggnb" class="btn btn-outline-primary rounded-pill">Add to Edge</a>
 
               </div>
             </div>
@@ -222,7 +264,33 @@
   	<p class="mt-4 wow fadeIn">Copyright &copy; 2020 <a href="https://www.macodeid.com/" class="fg-white fw-medium">MACode ID</a>. All right reserved</p>
   </div>
 </div>
+<script>
+	if (navigator.userAgent.includes("Edg/")) {
+		document.getElementById("chromelab").classList.remove("active")
+		document.getElementById("firefoxlab").classList.remove("active")
+		document.getElementById("edgelab").classList.add("active")
 
+		document.getElementById("chromedownload").style.display = "none"
+		document.getElementById("firefoxdownload").style.display = "none"
+		document.getElementById("edgedownload").style.display = "block"
+	} else if (navigator.userAgent.includes("Firefox/")) {
+		document.getElementById("firefoxlab").classList.add("active")
+		document.getElementById("chromelab").classList.remove("active")
+		document.getElementById("edgelab").classList.remove("active")
+
+		document.getElementById("chromedownload").style.display = "none"
+		document.getElementById("firefoxdownload").style.display = "block"
+		document.getElementById("edgedownload").style.display = "none"
+	} else if (navigator.userAgent.includes("Chrome/")) {
+		document.getElementById("chromelab").classList.add("active")
+		document.getElementById("firefoxlab").classList.remove("active")
+		document.getElementById("edgelab").classList.remove("active")
+
+		document.getElementById("chromedownload").style.display = "block"
+		document.getElementById("firefoxdownload").style.display = "none"
+		document.getElementById("edgedownload").style.display = "none"
+	}
+</script>
 <script src="assets/js/jquery-3.5.1.min.js"></script>
 
 <script src="assets/js/bootstrap.bundle.min.js"></script>
